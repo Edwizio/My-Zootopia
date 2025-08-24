@@ -23,17 +23,18 @@ HTML_text = ""
 for animal in animals_data:
   try:
     # Appending data to the HTML string
-    HTML_text += f"Name: {animal["name"]}\n"
+    HTML_text += '<li class="cards__item">'
+    HTML_text += f"Name: {animal["name"]}<br/>\n"
 
-    HTML_text += f"Diet: {animal["characteristics"]["diet"]}\n"
+    HTML_text += f"Diet: {animal["characteristics"]["diet"]}<br/>\n"
 
-    HTML_text += f"Location: {animal["locations"][0]}\n"
+    HTML_text += f"Location: {animal["locations"][0]}<br/>\n"
 
-    HTML_text += f"Type: {animal["characteristics"]["type"]}\n"
-    HTML_text += "\n"
+    HTML_text += f"Type: {animal["characteristics"]["type"]}<br/>\n"
+    HTML_text += "</li>\n"
 
   except KeyError:
-    HTML_text += "\n"
+    HTML_text += "</li>\n"
 
 #print(HTML_text)
 
