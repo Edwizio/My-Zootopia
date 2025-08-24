@@ -1,5 +1,8 @@
 import json
 
+from pyexpat import features
+
+
 def read_HTML(file_path):
   """ Reads the data from the HTML file"""
   with open(file_path, "r") as handle:
@@ -20,18 +23,19 @@ def serialize_animal(animal):
   try:
     # Appending data to the HTML string
     HTML_text += '<li class="cards__item">'
-    HTML_text += '<div class="card__title">'
-    HTML_text += f"{animal["name"]}<br/></div>\n"
-    HTML_text += '<p class="card__text">'
-    HTML_text += f"<strong>Diet: </strong> {animal["characteristics"]["diet"]}<br/>\n"
+    HTML_text += f'<div class="card__title"> {animal["name"]}<br/></div>\n'
+    HTML_text += '<div class="card__text">'
+    HTML_text += '<ul>'
+    HTML_text += f"<li class = 'card__points' ><strong> Diet: </strong> {animal["characteristics"]["diet"]}</li>\n"
 
-    HTML_text += f"<strong>Location: </strong> {animal["locations"][0]}<br/>\n"
+    HTML_text += f"<li class = 'card__points' ><strong>Location: </strong> {animal["locations"][0]}</li>\n"
     if "type" in animal["characteristics"]:
-      HTML_text += f"<strong>Type: </strong> {animal["characteristics"]["type"]}<br/>\n"
-    HTML_text += f"<strong>Kingdom: </strong> {animal["taxonomy"]["kingdom"]}<br/>\n"
-    HTML_text += f"<strong>Scientific Name: </strong> {animal["taxonomy"]["scientific_name"]}<br/>\n"
-    HTML_text += f"<strong>Life Span: </strong> {animal["characteristics"]["lifespan"]}<br/>\n"
-    HTML_text += '</p>'
+      HTML_text += f"<li class = 'card__points' ><strong>Type: </strong> {animal["characteristics"]["type"]}</li>\n"
+    HTML_text += f"<li class = 'card__points' ><strong>Kingdom: </strong> {animal["taxonomy"]["kingdom"]}</li>\n"
+    HTML_text += f"<li class = 'card__points' ><strong>Scientific Name: </strong> {animal["taxonomy"]["scientific_name"]}</li>\n"
+    HTML_text += f"<li class = 'card__points' ><strong>Life Span: </strong> {animal["characteristics"]["lifespan"]}</li>\n"
+    HTML_text += '</ul>'
+    HTML_text += '</div>'
     HTML_text += "</li>\n"
 
   except KeyError:
