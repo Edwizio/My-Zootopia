@@ -24,13 +24,15 @@ for animal in animals_data:
   try:
     # Appending data to the HTML string
     HTML_text += '<li class="cards__item">'
-    HTML_text += f"Name: {animal["name"]}<br/>\n"
+    HTML_text += '<div class="card__title">'
+    HTML_text += f"{animal["name"]}<br/></div>\n"
+    HTML_text += '<p class="card__text">'
+    HTML_text += f"<strong>Diet: </strong> {animal["characteristics"]["diet"]}<br/>\n"
 
-    HTML_text += f"Diet: {animal["characteristics"]["diet"]}<br/>\n"
+    HTML_text += f"<strong>Location: </strong> {animal["locations"][0]}<br/>\n"
 
-    HTML_text += f"Location: {animal["locations"][0]}<br/>\n"
-
-    HTML_text += f"Type: {animal["characteristics"]["type"]}<br/>\n"
+    HTML_text += f"<strong>Type: </strong> {animal["characteristics"]["type"]}<br/>\n"
+    HTML_text += '</p>'
     HTML_text += "</li>\n"
 
   except KeyError:
