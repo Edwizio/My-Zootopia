@@ -26,13 +26,16 @@ def serialize_animal(animal):
     HTML_text += f"<strong>Diet: </strong> {animal["characteristics"]["diet"]}<br/>\n"
 
     HTML_text += f"<strong>Location: </strong> {animal["locations"][0]}<br/>\n"
-
-    HTML_text += f"<strong>Type: </strong> {animal["characteristics"]["type"]}<br/>\n"
+    if "type" in animal["characteristics"]:
+      HTML_text += f"<strong>Type: </strong> {animal["characteristics"]["type"]}<br/>\n"
+    HTML_text += f"<strong>Kingdom: </strong> {animal["taxonomy"]["kingdom"]}<br/>\n"
+    HTML_text += f"<strong>Scientific Name: </strong> {animal["taxonomy"]["scientific_name"]}<br/>\n"
+    HTML_text += f"<strong>Life Span: </strong> {animal["characteristics"]["lifespan"]}<br/>\n"
     HTML_text += '</p>'
     HTML_text += "</li>\n"
 
   except KeyError:
-    HTML_text += "</li>\n"
+    HTML_text += "\n"
 
   return HTML_text
 
