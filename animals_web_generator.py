@@ -14,13 +14,9 @@ def load_data(file_path):
 
 animals_data = load_data('animals_data.json')
 
-#print(len(animals_data))
 
-# to store the HTML text
-HTML_text = ""
-
-# To generate the display info from the json file
-for animal in animals_data:
+def serialize_animal(animal):
+  HTML_text = ""
   try:
     # Appending data to the HTML string
     HTML_text += '<li class="cards__item">'
@@ -38,9 +34,18 @@ for animal in animals_data:
   except KeyError:
     HTML_text += "</li>\n"
 
-#print(HTML_text)
+  return HTML_text
 
-new_HTML = old_HTML.replace("__REPLACE_ANIMALS_INFO__", HTML_text)
+
+# to store the HTML text
+HTML_output = ""
+
+# To generate the display info from the json file
+for animal in animals_data:
+  HTML_output += serialize_animal(animal)
+
+# Replacing the animal info is the old HTML Template
+new_HTML = old_HTML.replace("__REPLACE_ANIMALS_INFO__", HTML_output)
 
 # Creating a new HTML file with the new HTML text
 with open("animals.html", "w") as animal_HTML:
