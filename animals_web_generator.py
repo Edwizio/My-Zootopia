@@ -1,8 +1,5 @@
 import json
 
-from pyexpat import features
-
-
 def read_HTML(file_path):
   """ Reads the data from the HTML file"""
   with open(file_path, "r") as handle:
@@ -14,8 +11,6 @@ def load_data(file_path):
   """ Loads a JSON file """
   with open(file_path, "r") as handle:
     return json.load(handle)
-
-animals_data = load_data('animals_data.json')
 
 
 def serialize_animal(animal):
@@ -43,21 +38,30 @@ def serialize_animal(animal):
 
   return HTML_text
 
+def main():
+  """
+  This is the main function where the functions will be called and executed.
+  """
 
-# to store the HTML text
-HTML_output = ""
+  # Loading the animal's data from the JSON file
+  animals_data = load_data('animals_data.json')
 
-# To generate the display info from the json file
-for animal in animals_data:
-  HTML_output += serialize_animal(animal)
+  # to store the HTML text
+  HTML_output = ""
 
-# Replacing the animal info is the old HTML Template
-new_HTML = old_HTML.replace("__REPLACE_ANIMALS_INFO__", HTML_output)
+  # To generate the display info from the json file
+  for animal in animals_data:
+    HTML_output += serialize_animal(animal)
 
-# Creating a new HTML file with the new HTML text
-with open("animals.html", "w") as animal_HTML:
-  animal_HTML.write(new_HTML)
+  # Replacing the animal info is the old HTML Template
+  new_HTML = old_HTML.replace("__REPLACE_ANIMALS_INFO__", HTML_output)
+
+  # Creating a new HTML file with the new HTML text
+  with open("animals.html", "w") as animal_HTML:
+    animal_HTML.write(new_HTML)
 
 
+if __name__ == "__main__":
+  main()
 
 
