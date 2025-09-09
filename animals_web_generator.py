@@ -2,10 +2,9 @@ import json
 
 def read_HTML(file_path):
   """ Reads the data from the HTML file"""
-  with open(file_path, "r") as handle:
+  with open(file_path, "r", encoding="utf-8") as handle:
     return handle.read()
 
-old_HTML = read_HTML("animals_template.html")
 
 def load_data(file_path):
   """ Loads a JSON file """
@@ -45,6 +44,8 @@ def main():
 
   # Loading the animal's data from the JSON file
   animals_data = load_data('animals_data.json')
+
+  old_HTML = read_HTML("animals_template.html")
 
   # to store the HTML text
   HTML_output = ""
