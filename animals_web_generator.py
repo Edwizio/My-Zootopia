@@ -13,6 +13,9 @@ def load_data(file_path):
 
 
 def serialize_animal(animal):
+  """ This function serializes the whole data to be presented in the HTML
+
+  """
   HTML_text = ""
   try:
     # Appending data to the HTML string
